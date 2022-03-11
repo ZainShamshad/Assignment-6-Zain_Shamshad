@@ -1,0 +1,244 @@
+<!-- <div class="container">
+    <div class="row">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <h4>Create Account</h4>
+            <hr/>
+            <br/>
+            <div ngModelGroup="userData">
+                <div  class="error-block" *ngIf="(!firstname.valid && firstname.touched) || (!lastname.valid && lastname.touched)">
+                    <span *ngIf="(!firstname.valid && firstname.touched)" class="fn-error">*firstname is required</span>
+                    <span class="gap" *ngIf="(!lastname.valid && lastname.touched)">*lastname is required</span>
+                    <br/>
+                </div>
+                <input 
+                    class="type"  
+                    type="text" 
+                    id="firstname" 
+                    placeholder="enter firstname*" 
+                    ngModel
+                    name="firstname"
+                    required
+                    #firstname="ngModel"
+                >
+                <span class="gap"></span>
+                <input 
+                    class="type"  
+                    type="text" 
+                    id="lastname" 
+                    placeholder="enter lastname*" 
+                    ngModel
+                    name="lastname"
+                    required
+                    #lastname="ngModel"
+                >
+                <br/>
+                <br/>
+                <div  class="error-block" *ngIf="(!username.valid && username.touched)">
+                    <span class="fn-error">*username is required</span><br>
+                </div>
+                <input 
+                    class="type"  
+                    type="text" 
+                    id="username" 
+                    placeholder="enter username*" 
+                    ngModel
+                    name="username"
+                    required
+                    #username="ngModel"
+                >
+                <br/>
+                <br/>
+                <div  class="error-block" *ngIf="(!email.valid && email.touched)">
+                    <span class="fn-error">*email is required</span><br>
+                </div>
+                <input 
+                    class="type"  
+                    type="email" 
+                    id="email" 
+                    placeholder="enter email*" 
+                    ngModel
+                    name="email" 
+                    required
+                    email
+                    #email="ngModel"
+                >
+                <br> <br>
+            </div>
+
+            <div  class="error-block" *ngIf="(!password.valid && password.touched)">
+                <span class="fn-error">*password is required</span><br>
+            </div>
+            <input 
+                class="type"  
+                type="password" 
+                id="password" 
+                placeholder="enter password*" 
+                ngModel
+                name="password" 
+                required
+                #password="ngModel"
+            >
+            <br/>
+            <br/>
+            <div  class="error-block" *ngIf="(!confirm_password.valid && confirm_password.touched)">
+                <span class="fn-error">*Confirm is required</span><br>
+            </div>
+            <input 
+                class="type"  
+                type="password" 
+                id="password" 
+                placeholder="confirm password*" 
+                ngModel
+                name="confirm_password" 
+                required
+                #confirm_password="ngModel"
+            >
+            <br><br>
+            <hr/>
+            <input type="submit" class="button" value="Register User"
+            [disabled]="!f.valid">
+        </form>
+    </div>
+</div>
+ -->
+
+ <div class="container">
+    <div class="row">
+        <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+            <h4>Create Account</h4>
+            <hr/>
+            <br/>
+            <div formGroupName="userData">
+                <div  class="error-block" *ngIf="(! signupForm.get('userData.firstname')?.valid && signupForm.get('userData.firstname')?.touched) || (!signupForm.get('userData.lastname')?.valid && signupForm.get('userData.lastname')?.touched)">
+                    <span 
+                        *ngIf="(!signupForm.get('userData.firstname')?.valid 
+                        && signupForm.get('userData.firstname')?.touched)
+                        && signupForm.get('userData.firstname')?.errors!['required']" 
+                        class="fn-error"
+                    >*firstname is required</span>
+                    <span 
+                        *ngIf="(!signupForm.get('userData.firstname')?.valid 
+                        && signupForm.get('userData.firstname')?.touched)
+                        && signupForm.get('userData.firstname')?.errors!['pattern']" 
+                        class="fn-error"
+                    >*upto 30 alphabets allowed only</span>
+                    
+                    <span 
+                        *ngIf="(signupForm.get('userData.firstname')?.valid) 
+                        && !signupForm.get('userData.lastname')?.valid" 
+                        class="fn-error"
+                    ></span>
+
+                    <span 
+                        *ngIf="(!signupForm.get('userData.lastname')?.valid 
+                        && signupForm.get('userData.lastname')?.touched)
+                        && signupForm.get('userData.lastname')?.errors!['pattern']" 
+                        class="gap"
+                    >*upto 30 alphabets allowed only</span>
+                    
+                    <span 
+                        class="gap" 
+                        *ngIf="(!signupForm.get('userData.lastname')?.valid 
+                        && signupForm.get('userData.lastname')?.touched)
+                        && signupForm.get('userData.lastname')?.errors!['required']"
+                    >*lastname is required</span>
+                    <br/>
+                </div>
+                <input 
+                    class="type"  
+                    type="text" 
+                    id="firstname" 
+                    placeholder="enter firstname*" 
+                    formControlName="firstname"
+                >
+                <span class="gap"></span>
+                <input 
+                    class="type"  
+                    type="text" 
+                    id="lastname" 
+                    placeholder="enter lastname*" 
+                    formControlName="lastname"
+                >
+                <br/>
+                <br/>
+                <div  
+                    class="error-block" 
+                    *ngIf="(!signupForm.get('userData.username')?.valid 
+                    && signupForm.get('userData.username')?.touched)">
+                    <span 
+                        class="fn-error" 
+                        *ngIf="(!signupForm.get('userData.username')?.valid 
+                        && signupForm.get('userData.username')?.touched)
+                        && signupForm.get('userData.username')?.errors!['required']"
+                    >*username is required</span>
+                    <span 
+                        class="fn-error" 
+                        *ngIf="(!signupForm.get('userData.username')?.valid 
+                        && signupForm.get('userData.username')?.touched)
+                        && signupForm.get('userData.username')?.errors!['pattern']"
+                    >*username pattern/format is invalid</span>
+                    <br>
+                </div>
+                <input 
+                    class="type"  
+                    type="text" 
+                    id="username" 
+                    placeholder="enter username*" 
+                    formControlName="username"
+                >
+                <br/>
+                <br/>
+                <div  class="error-block" *ngIf="(!signupForm.get('userData.email')?.valid && signupForm.get('userData.email')?.touched)">
+                    <span class="fn-error" *ngIf="signupForm.get('userData.email')?.errors!['required']">*email is required</span>
+                    <span class="fn-error" *ngIf="signupForm.get('userData.email')?.errors!['email']">*email is invalid</span>
+                    <span class="fn-error" *ngIf="signupForm.get('userData.email')?.errors!['LimitIsOver']">*exceeds 60 characters limit</span>
+                    <br>
+                </div>
+                <input 
+                    class="type"  
+                    type="email" 
+                    id="email" 
+                    placeholder="enter email*" 
+                    formControlName="email"
+                >
+                <br> <br>
+            </div>
+
+            <div  class="error-block" *ngIf="(!signupForm.get('password')?.valid && signupForm.get('password')?.touched)">
+                <span class="fn-error">*password is required</span><br>
+            </div>
+            <input 
+                class="type"  
+                type="password" 
+                id="password" 
+                placeholder="enter password*" 
+                formControlName="password"
+            >
+            <br/>
+            <br/>
+            <div  class="error-block" *ngIf="(!signupForm.get('confirm_password')?.valid && signupForm.get('confirm_password')?.touched)">
+                <span 
+                    class="fn-error"
+                    *ngIf="signupForm.get('confirm_password')?.errors!['required']"
+                >*retype password to confirm</span>
+                <span 
+                class="fn-error"
+                *ngIf=" (signupForm.get('confirm_password')?.errors!['passwordMisMatch']) && (! (signupForm.get('confirm_password')?.errors!['required']))"
+                >*passwords don't match</span>
+                <br>
+            </div>
+            <input 
+                class="type"  
+                type="password" 
+                id="password" 
+                placeholder="confirm password*" 
+                formControlName="confirm_password"
+            >
+            <br><br>
+            <hr/>
+            <input type="submit" class="button" value="Register User"
+            [disabled]="!signupForm.valid">
+        </form>
+    </div>
+</div>
+

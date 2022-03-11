@@ -1,0 +1,58 @@
+
+<div id="login-comp">
+    <p>{{welcome}}</p>
+    <div id="form" >
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
+            <p id="title_login">. U S E R . C R E D E N T I A L S .</p>
+            <input type="text" id="username" name="username" placeholder="username*" formControlName="username"/>
+            <input type="password" id="password" name="password" placeholder="password*" formControlName="password"/>
+            <div class="buttons-holder">
+                <button [disabled]="!loginForm.valid" id="login_btn">LOGIN</button>
+                <button class="create"
+                    (click)="create()">CREATE ACCOUNT</button>
+            </div>
+        
+            <div class="msg">
+                <span class="title">
+                    {{title}}
+                </span>
+                <span class="space">
+                </span>
+                <span class="subtitle">
+                    {{subtitle}}
+                </span>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+
+<!-- <div id="login-comp">
+    <p>{{welcome}}</p>
+    <div id="form" >
+         <img id="avatar" src="assets/login_user.png" alt="login user avatar"/>
+        
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
+            <p id="title_login">. U S E R . C R E D E N T I A L S .</p>
+            <input type="text" id="username" name="username" placeholder="username*" [(ngModel)]="ngusername"/>
+            <input type="password" id="password" name="password" placeholder="password*" [(ngModel)]="ngpassword"/>
+            <div class="buttons-holder">
+                <button>LOGIN</button>
+                <button class="create"
+                    (click)="create()">CREATE ACCOUNT</button>
+            </div>
+        </form>
+        
+        <div class="msg">
+            <span class="title">
+                {{title}}
+            </span>
+            <span class="space">
+            </span>
+            <span class="subtitle">
+                {{subtitle}}
+            </span>
+        </div>
+    </div>
+</div> -->
